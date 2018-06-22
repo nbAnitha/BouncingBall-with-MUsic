@@ -1,0 +1,121 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>15901na_Anitha- HTML5 Bouncing Ball</title>
+
+     <style>
+   h1 {
+      font-family: 'Oswald', sans-serif;
+      font-size: 48px;
+   }
+     </style>
+     		<audio autoplay>
+  
+  <source src="happy.mp3" >
+</audio>
+	
+</head>
+ <body>
+      <p>
+        <table align="center">
+         <tr >
+            <td colspan="2" >
+               <center><canvas id="myCanvas" width="300" height="300"></canvas></center>
+            </td>
+         </tr>
+         <tr>
+            <td align="center"><input type="button" value="   Start  " onclick="strtBtn()"></td>
+            <td align="center"><input type="button" value="   Stop  " onclick="stopBtn()"></td>
+         </tr>
+
+      </table>
+
+      </p>
+   <p>
+      <center>
+     
+      <h1>Bouncing Ball</h1>
+      
+      </center>
+   </p>
+       <footer>
+       <center>
+       <p>- By Anitha
+       </p>
+       </center>
+       </footer>
+
+
+	<script type="text/javascript">
+		var context;
+		var y = 250;
+		var x = 100;
+		var dx = 5;
+		var dy = 5;
+	
+		var intervalTime = 15;
+		var togglenumber = 1;
+		var color = "#0000ff";
+
+		var boolStop = false;
+		var setIntr = setInterval(draw, intervalTime);
+
+		// Start 
+		function strtBtn() {
+			console.log("strtBtn:");
+			if (boolStop) {
+				setIntr = setInterval(draw, intervalTime);
+		boolStop = false;
+
+			}
+		}
+
+		// Stop
+		function stopBtn(){
+			console.log("stopBtn:");
+			clearInterval(setIntr);
+			boolStop = true
+		}
+
+
+		// Drawing the circle 
+		function draw() {
+			context = myCanvas.getContext('2d');
+			context.clearRect(0, 0, 300, 300);
+			context.beginPath();
+			context.fillStyle = color;
+			context.arc(x, y, 20, 0, Math.PI * 2, true);
+			context.closePath();
+			context.fill();
+			document.body.style.backgroundColor = "grey";
+            document.getElementById("myCanvas").style.backgroundColor="White";
+			if (x<0 || x>300) {
+				dx = -dx;
+				
+			}
+
+			if (y<0 || y>300) {
+				dy = -dy;
+			}
+
+	
+			if (x == 0 || x == 300 || y == 0 || y == 300) {
+				
+				if (togglenumber % 4 == 0) {
+					color =  "#0000ff";
+					
+				} else {
+					color = "#ff0000";
+				
+				}
+				togglenumber += 1;
+			}
+			x -= dx;
+			y -= dy;
+
+		}
+	</script>
+</body>
+</html>
